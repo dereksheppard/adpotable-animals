@@ -4,17 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && npm run combine-css && npm run combine-js",
+    "build": "vue-cli-service build && npm run combine-js && npm run combine-css",
     "lint": "vue-cli-service lint",
-    "combine-js": "concat -o ./dist/js/index.js ./dist/js/app.*.js ./dist/js/chunk-vendors.*.js",
-    "combine-css": "concat -o ./dist/css/styles.css ./dist/css/app.*.css"
+    "combine-js": "concat -o ./dist/js/index.js ./dist/js/chunk-vendors.*.js ./dist/js/app.*.js ",
+    "combine-css": "concat -o ./dist/css/index.css ./dist/css/**.css"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "combine-css": "^0.0.2",
     "combine-js": "^1.0.0",
     "concat": "^1.0.3",
-    "glob": "^7.1.7",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
