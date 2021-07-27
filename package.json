@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && npm run combine-css && npm run combine-js",
     "lint": "vue-cli-service lint",
-    "combine-js": "glob concat -o ./dist/js/index.js npm ./dist/js/app.**.js ./dist/js/chunk-vendors.**.js",
-    "combine-css": "glob concat -o ./dist/css/styles.css ./dist/css/app.**.css"
+    "combine-js": "concat -o ./dist/js/index.js ./dist/js/app.*.js ./dist/js/chunk-vendors.*.js",
+    "combine-css": "concat -o ./dist/css/styles.css ./dist/css/app.*.css"
   },
   "dependencies": {
     "axios": "^0.21.1",
