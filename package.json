@@ -10,6 +10,7 @@
     "combine-css": "concat -o ./dist/css/index.css ./dist/css/**.css"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "axios": "^0.21.1",
     "combine-css": "^0.0.2",
     "combine-js": "^1.0.0",
