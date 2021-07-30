@@ -52,6 +52,13 @@ export default {
   object-fit: cover;
   object-position: center;
 }
+.paws {
+  font-size:3rem;
+}
+.filter-icon, .close-icon {
+  font-size: 1rem;
+  vertical-align: text-bottom;
+}
 
 .color-icon {
   height:34px;

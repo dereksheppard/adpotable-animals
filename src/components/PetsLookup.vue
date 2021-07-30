@@ -1,13 +1,13 @@
 <template>
-  <div role="region" aria-live="polite" aria-relevant="all">
+  <div role="region" aria-live="polite" aria-relevant="all" class="container">
     <!--LOADING ICON START -->
 
     <section v-if="loading" class="loading-container">
       <span class="sr-only">Loading...</span>
-      <span class="paws top-right fa fa-paw fa-3x"></span>
-      <span class="paws top-left fa fa-paw fa-3x"></span>
-      <span class="paws bottom-right fa fa-paw fa-3x"></span>
-      <span class="paws bottom-left fa fa-paw fa-3x"></span>
+      <span class="paws top-right material-icons">pets</span>
+      <span class="paws top-left material-icons">pets</span>
+      <span class="paws bottom-right material-icons">pets</span>
+      <span class="paws bottom-left material-icons">pets</span>
     </section>
 
     <!--LOADING ICON END -->
@@ -29,7 +29,7 @@
       <div v-if="!loading && !errored">
         <!-- FILTER START -->
 
-        <div class="row border">
+        <div class="row border pt-2">
           <div class="col-md-4">
             <label for="postSearch">Search by Name</label>
             <input
@@ -71,7 +71,7 @@
                 aria-expanded="false"
                 aria-controls="refine-results"
               >
-                <i class="fa fa-filter" aria-hidden="true"></i> Refine
+                <span class="material-icons filter-icon">filter_alt</span> Refine
                 results
               </a>
             </p>
@@ -219,7 +219,7 @@
                         class="btn btn-xs btn-link m-t m-r"
                         v-on:click="resetForm"
                       >
-                        Clear all filters <span class="fa fa-times-circle" aria-hidden="true"></span>
+                        Clear all filters <span class="material-icons close-icon" aria-hidden="true">cancel</span>
                       </button>
                     </div>
                   </div>
@@ -233,13 +233,13 @@
           <li v-if="search" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="search = ''">
               Search term: {{ this.search }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="searchId" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="searchId = ''">
               ID Number: {{ this.searchId }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
 
@@ -249,7 +249,7 @@
               v-on:click="selectedType = ''"
             >
               {{ this.selectedType }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="selectedLocation" class="list-inline-item">
@@ -258,7 +258,7 @@
               v-on:click="selectedLocation = ''"
             >
               Location: {{ this.selectedLocation }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="selectedTemp" class="list-inline-item">
@@ -267,7 +267,7 @@
               v-on:click="selectedTemp = ''"
             >
               Temperament: {{ this.selectedTemp }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="selectedAge.length > 0" class="list-inline-item">
@@ -278,7 +278,7 @@
                 ageClear();
               "
             >
-              Age <span class="fa fa-times-circle" aria-hidden="true"></span>
+              Age <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="selectedSex" class="list-inline-item">
@@ -287,13 +287,13 @@
               v-on:click="selectedSex = ''"
             >
               {{ this.selectedSex }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
           <li v-if="itemsCount < lessThan" class="list-inline-item">
             <button class="btn btn-xs btn-link" v-on:click="resetForm">
               Clear all filters
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="material-icons close-icon" aria-hidden="true">cancel</span>
             </button>
           </li>
         </ul>
