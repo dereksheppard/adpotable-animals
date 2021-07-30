@@ -71,7 +71,7 @@
                 aria-expanded="false"
                 aria-controls="refine-results"
               >
-                <span class="fas fa-filter" aria-hidden="true"></span> Refine
+                <i class="fas fa-filter" aria-hidden="true"></i> Refine
                 results
               </a>
             </p>
@@ -158,7 +158,7 @@
                               value="GREEN"
                             />
                             <img
-                              style="height: 34px"
+                              style="height: 34px; margin-right: 1rem;"
                               src="https://kingcounty.gov/~/media/depts/regional-animal-services/images/All-Images/green.ashx"
                             />
                             <span>Easy-going Green</span></label
@@ -174,7 +174,7 @@
                             />
                             <img
                               class="center-block"
-                              style="height: 34px"
+                              style="height: 34px; margin-right: 1rem;"
                               src="https://kingcounty.gov//~/media/depts/regional-animal-services/images/All-Images/red.ashx"
                             />
                             <span>Rambuncious Red</span></label
@@ -189,7 +189,7 @@
                               value="BLUE"
                             />
                             <img
-                              style="height: 34px"
+                              style="height: 34px; margin-right: 1rem;"
                               src="https://kingcounty.gov//~/media/depts/regional-animal-services/images/All-Images/blue.ashx"
                             />
                             <span>Bashful Blue</span></label
@@ -230,13 +230,13 @@
           <li v-if="search" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="search = ''">
               Search term: {{ this.search }}
-              <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="searchId" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="searchId = ''">
               ID Number: {{ this.searchId }}
-              <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
 
@@ -246,7 +246,7 @@
               v-on:click="selectedType = ''"
             >
               {{ this.selectedType }}
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedLocation" class="list-inline-item">
@@ -255,7 +255,7 @@
               v-on:click="selectedLocation = ''"
             >
               Location: {{ this.selectedLocation }}
-              <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedTemp" class="list-inline-item">
@@ -264,7 +264,7 @@
               v-on:click="selectedTemp = ''"
             >
               Temperament: {{ this.selectedTemp }}
-              <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedAge.length > 0" class="list-inline-item">
@@ -275,7 +275,7 @@
                 ageClear();
               "
             >
-              Age <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              Age <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedSex" class="list-inline-item">
@@ -284,13 +284,13 @@
               v-on:click="selectedSex = ''"
             >
               {{ this.selectedSex }}
-              <span class="fa fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="itemsCount < lessThan" class="list-inline-item">
             <button class="btn btn-xs btn-link" v-on:click="resetForm">
               Clear all filters
-              <span class="fa fa-times-circle" aria-hidden="true"></span>
+              <span class="fas fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
         </ul>
@@ -305,7 +305,7 @@
         <!-- FILTER END -->
 
         <div
-          class="row results"
+          class="row"
           v-bind:key="i"
           v-for="i in Math.ceil(computed_items.length / 3)"
         >
@@ -313,11 +313,11 @@
             v-bind:key="i"
             v-for="(items, i) in computed_items.slice((i - 1) * 3, i * 3)"
             v-bind:class="{
-              'col-md-4': computed_items.length > 1,
-              'col-lg-4 offset-lg-4 col-sm-12': computed_items.length <= 1,
+              'col-md-4  mb-3': computed_items.length > 1,
+              'col-lg-4 offset-lg-4 col-sm-12 mb-3': computed_items.length <= 1,
             }"
           >
-            <div class="card mb-3 h-100">
+            <div class="card h-100">
               <img
                 class="card-img-top pet-image"
                 v-bind:src="items.image.url"
@@ -330,15 +330,13 @@
                   {{ items.animal_name || items.animal_id }}
                 </h3>
                 <img
+                  v-if="items.temperament"
                   class="float-right color-icon"
-                  :src="
-                    'https://kingcounty.gov/~/media/depts/regional-animal-services/images/All-Images/' +
-                    items.temperament
-                  "
+                  :src="'https://kingcounty.gov/~/media/depts/regional-animal-services/images/All-Images/' + items.temperament "
                   alt=""
                 />
 
-                <span class="sr-only">{{ items.temperament }}</span>
+                <span v-if="items.temperament" class="sr-only">{{ items.temperament }}</span>
               </div>
               <div class="card-body pt-0">
                 <ul class="list-unstyled">
@@ -368,7 +366,7 @@
               role="dialog"
               v-bind:aria-labelledby="'label' + items.animal_id"
             >
-              <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h4
@@ -377,6 +375,7 @@
                     >
                       {{ items.animal_name || items.animal_id }}
                       <img
+                      v-if="items.temperament"
                         class="color-icon"
                         :src="
                           'https://kingcounty.gov/~/media/depts/regional-animal-services/images/All-Images/' +
@@ -397,6 +396,8 @@
                     </button>
                   </div>
                   <div class="modal-body">
+                    <div class="row">
+                      <div class="col">
                     <div
                       id="modal-image-container"
                       class="col-xs-12 col-sm-6 float-right"
@@ -412,12 +413,17 @@
                     </div>
 
                     <div class="p-r" v-html="items.memo"></div>
-
-                    <p class="box p-3">
+                      </div>
+                      </div>
+                     <div class="row">
+                      <div class="col">
+                    <p class="box p-3 block">
                       For more information, please reference Animal ID Number
                       <strong>{{ items.animal_id }} </strong>and call
                       <strong>206-296-3936</strong>.
                     </p>
+                    </div>
+                    </div>
                   </div>
                   <div class="modal-footer">
                     <button
