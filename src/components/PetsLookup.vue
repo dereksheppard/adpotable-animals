@@ -29,7 +29,7 @@
       <div v-if="!loading && !errored">
         <!-- FILTER START -->
 
-        <div class="row">
+        <div class="row border">
           <div class="col-md-4">
             <label for="postSearch">Search by Name</label>
             <input
@@ -71,15 +71,18 @@
                 aria-expanded="false"
                 aria-controls="refine-results"
               >
-                <i class="fas fa-filter" aria-hidden="true"></i> Refine
+                <i class="fa fa-filter" aria-hidden="true"></i> Refine
                 results
               </a>
             </p>
-            <div class="collapse" id="refine-results">
+            <div class="collapse mb-2" id="refine-results">
               <div class="card card-body">
                 <div class="card-body">
+                  <p v-if="!loading && !errored && !itemsCount < 1">Results: <strong>{{ itemsCount }}</strong></p>
+
                   <div class="row">
                     <div class="col-md-6">
+
                       <!-- GENDER START -->
                       <label for="sexSelect">Sex</label>
                       <select
@@ -158,7 +161,7 @@
                               value="GREEN"
                             />
                             <img
-                              style="height: 34px; margin-right: 1rem;"
+                              style="height: 34px; margin-right: 1rem; margin-left:1rem;"
                               src="https://kingcounty.gov/~/media/depts/regional-animal-services/images/All-Images/green.ashx"
                             />
                             <span>Easy-going Green</span></label
@@ -174,7 +177,7 @@
                             />
                             <img
                               class="center-block"
-                              style="height: 34px; margin-right: 1rem;"
+                              style="height: 34px; margin-right: 1rem; margin-left:1rem;"
                               src="https://kingcounty.gov//~/media/depts/regional-animal-services/images/All-Images/red.ashx"
                             />
                             <span>Rambuncious Red</span></label
@@ -189,7 +192,7 @@
                               value="BLUE"
                             />
                             <img
-                              style="height: 34px; margin-right: 1rem;"
+                              style="height: 34px; margin-right: 1rem; margin-left:1rem;"
                               src="https://kingcounty.gov//~/media/depts/regional-animal-services/images/All-Images/blue.ashx"
                             />
                             <span>Bashful Blue</span></label
@@ -216,7 +219,7 @@
                         class="btn btn-xs btn-link m-t m-r"
                         v-on:click="resetForm"
                       >
-                        Clear all filters
+                        Clear all filters <span class="fa fa-times-circle" aria-hidden="true"></span>
                       </button>
                     </div>
                   </div>
@@ -226,17 +229,17 @@
           </div>
         </div>
 
-        <ul class="list-inline m-t-md">
+        <ul id="filter-buttons" class="list-inline m-t-md">
           <li v-if="search" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="search = ''">
               Search term: {{ this.search }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="searchId" class="list-inline-item">
             <button class="btn btn-xs btn-default" v-on:click="searchId = ''">
               ID Number: {{ this.searchId }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
 
@@ -246,7 +249,7 @@
               v-on:click="selectedType = ''"
             >
               {{ this.selectedType }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedLocation" class="list-inline-item">
@@ -255,7 +258,7 @@
               v-on:click="selectedLocation = ''"
             >
               Location: {{ this.selectedLocation }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedTemp" class="list-inline-item">
@@ -264,7 +267,7 @@
               v-on:click="selectedTemp = ''"
             >
               Temperament: {{ this.selectedTemp }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedAge.length > 0" class="list-inline-item">
@@ -275,7 +278,7 @@
                 ageClear();
               "
             >
-              Age <span class="fas fa-times-circle" aria-hidden="true"></span>
+              Age <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="selectedSex" class="list-inline-item">
@@ -284,23 +287,16 @@
               v-on:click="selectedSex = ''"
             >
               {{ this.selectedSex }}
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
           <li v-if="itemsCount < lessThan" class="list-inline-item">
             <button class="btn btn-xs btn-link" v-on:click="resetForm">
               Clear all filters
-              <span class="fas fa-times-circle" aria-hidden="true"></span>
+              <span class="fa fa-times-circle" aria-hidden="true"></span>
             </button>
           </li>
         </ul>
-
-        <p
-          class="text-center lead p-3"
-          v-if="!loading && !errored && !itemsCount < 1"
-        >
-          Results: <strong>{{ itemsCount }}</strong>
-        </p>
 
         <!-- FILTER END -->
 
@@ -317,7 +313,7 @@
               'col-lg-4 offset-lg-4 col-sm-12 mb-3': computed_items.length <= 1,
             }"
           >
-            <div class="card h-100">
+            <div class="card h-100 shadow">
               <img
                 class="card-img-top pet-image"
                 v-bind:src="items.image.url"
@@ -340,7 +336,7 @@
               </div>
               <div class="card-body pt-0">
                 <ul class="list-unstyled">
-                  <li>{{ items.age | titlecase }} old</li>
+                  <li>{{ items.age | titlecase }} <span v-if="items.age !== 'NO AGE'">old</span></li>
                   <li>{{ items.animal_type }}</li>
                   <li>
                     {{ items.animal_gender | removeSpayed }}
@@ -349,7 +345,8 @@
                   <li>Received on: {{ items.date | dateformat }}</li>
                 </ul>
                 <button
-                  class="btn btn-link btn-block stretched-link"
+                  class="btn btn-link btn-block btn-lg stretched-link"
+                  style="margin:0;"
                   data-toggle="modal"
                   v-bind:data-target="'#' + items.animal_id"
                 >

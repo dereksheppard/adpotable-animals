@@ -69,6 +69,9 @@ export default {
   #modal-image-container {
     padding-left: 0;
   }
+  #filter-buttons {
+    display: none;
+  }
 }
 
 .loading-container {
